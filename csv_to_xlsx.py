@@ -3,7 +3,10 @@ import argparse
 import csv
 from pathlib import Path
 
-from openpyxl import Workbook
+try:
+    from openpyxl import Workbook
+except ModuleNotFoundError as exc:
+    raise ModuleNotFoundError("Missing dependency: openpyxl. Install with: pip install openpyxl") from exc
 
 
 def convert_csv_to_xlsx(csv_path: Path, xlsx_path: Path) -> None:
